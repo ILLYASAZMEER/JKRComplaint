@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .division {
+            margin-bottom: 40px;
+        }
+        .division h2 {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Outstanding Cases Dashboard</h1>
+        <!-- Division Sections -->
+        <div class="division">
+            <h2>Cawangan Lebuhraya Pan Borneo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Case Detail</th>
+                        <th>Date of Case Open</th>
+                    </tr>
+                </thead>
+                <tbody id="panBorneoCases">
+                    <!-- Case rows will go here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Add more division sections here following the same structure -->
+        
+        <!-- Example for another division -->
+        <div class="division">
+            <h2>CSTRU</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Case Number</th>
+                        <th>Case Detail</th>
+                        <th>Date of Case Open</th>
+                    </tr>
+                </thead>
+                <tbody id="cstruCases">
+                    <!-- Case rows will go here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Repeat for all divisions/branches as listed -->
+
+    </div>
+
+    <!-- Add JavaScript to handle dynamic updates if needed -->
+    <script>
+        // Example case data for demonstration purposes
+        const casesData = {
+            panBorneo: [
+                { caseNumber: 'PB001', caseDetail: 'Case detail 1', dateOpen: '2023-01-15' },
+                { caseNumber: 'PB002', caseDetail: 'Case detail 2', dateOpen: '2023-02-20' }
+            ],
+            cstru: [
+                { caseNumber: 'CS001', caseDetail: 'Case detail 1', dateOpen: '2023-03-10' },
+                { caseNumber: 'CS002', caseDetail: 'Case detail 2', dateOpen: '2023-04-05' }
+            ]
+            // Add more data for other divisions/branches here
+        };
+
+        function loadCases() {
+            Object.keys(casesData).forEach(division => {
+                const tbody = document.getElementById(`${division}Cases`);
+                casesData[division].forEach(caseItem => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${caseItem.caseNumber}</td>
+                        <td>${caseItem.caseDetail}</td>
+                        <td>${caseItem.dateOpen}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            });
+        }
+
+        window.onload = loadCases;
+    </script>
+</body>
+</html>
